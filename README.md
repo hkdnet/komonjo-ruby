@@ -20,7 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = Komonjo::Client.new(your_slack_token)
+
+# checking connection
+client.token_valid?
+
+# get channels
+client.channels
+
+# get message at a channel
+# Note: The argument is not channel_id but channel_name
+client.messages(channel_name)
+```
 
 ## Development
 

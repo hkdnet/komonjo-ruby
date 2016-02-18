@@ -1,3 +1,4 @@
+require 'komonjo/client'
 require 'komonjo/version'
 require 'komonjo/connections/slack_connection'
 require 'komonjo/extensions/hash_extensions'
