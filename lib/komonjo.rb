@@ -1,4 +1,15 @@
-require "komonjo/version"
-
-module Komonjo
-end
+require 'komonjo/version'
+require 'komonjo/connections/slack_connection'
+require 'komonjo/extensions/hash_extensions'
+require 'komonjo/extensions/to_json'
+require 'komonjo/gateways/channels_gateway'
+require 'komonjo/gateways/messages_gateway'
+require 'komonjo/models/api/response_base'
+require 'komonjo/models/channel'
+require 'komonjo/models/message'
+require 'komonjo/models/profile'
+require 'komonjo/models/user'
+require 'komonjo/services/slack_service'
+require 'komonjo/services/channels_service'
+require 'komonjo/services/login_service'
+require 'komonjo/services/messages_service'
