@@ -43,7 +43,7 @@ module Komonjo
       private
 
       def channel_id(channel_name)
-        channel_list = Slack.channels_list
+        channel_list = client.channels_list
         fail 'error' unless channel_list['ok']
         target_channel = channel_list['channels'].select do |e|
           e['name'] == channel_name
