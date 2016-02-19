@@ -21,7 +21,9 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-client = Komonjo::Client.new(your_slack_token)
+client = Komonjo::Client.new({
+  token: your_slack_token
+})
 
 # checking connection
 client.token_valid?
