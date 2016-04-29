@@ -18,10 +18,11 @@ module Komonjo
       s.channels
     end
 
-    def messages(channel_name)
+    def messages(opts)
+      opts = { channel_name: opts } if opts.is_a?(String)
       s = Komonjo::Service::MessagesService.new(@api_token)
       s.instance_variable_set('@connection', Komonjo::Mock::SlackMock) if @debug
-      s.messages(channel_name)
+      s.messages(opts)
     end
   end
 end

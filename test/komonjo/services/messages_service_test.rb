@@ -23,7 +23,7 @@ module KomonjoTest
             end
           end
           it 'should be map hash to Komonjo::Model::Message' do
-            s.messages(:test_channel).each do |e|
+            s.messages(channel_name: :test_channel).each do |e|
               assert { e.class == Komonjo::Model::Message }
               assert { !(/^id00\d/.match(e.user.id).nil?) }
             end
