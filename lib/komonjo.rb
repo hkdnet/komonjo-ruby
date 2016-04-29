@@ -1,7 +1,8 @@
+require 'komonjo/extensions/hash_extensions'
+
 require 'komonjo/client'
 require 'komonjo/version'
 require 'komonjo/connections/slack_connection'
-require 'komonjo/extensions/hash_extensions'
 require 'komonjo/extensions/to_json'
 require 'komonjo/gateways/channels_gateway'
 require 'komonjo/gateways/messages_gateway'

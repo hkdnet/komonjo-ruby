@@ -1,5 +1,6 @@
 module Komonjo
   class Client
+    using ::HashExtensions
     attr_accessor :api_token
     def initialize(options)
       @api_token = options[:token]
@@ -19,7 +20,11 @@ module Komonjo
     end
 
     def messages(opts)
-      opts = { channel_name: opts } if opts.is_a?(String)
+      if opts.is_a?(String)
+        channel_name = opts
+        opts = { channel_name: channel_name }
+      end
+      opts = Hash[opts.symbolize_keys]
       s = Komonjo::Service::MessagesService.new(@api_token)
       s.instance_variable_set('@connection', Komonjo::Mock::SlackMock) if @debug
       s.messages(opts)

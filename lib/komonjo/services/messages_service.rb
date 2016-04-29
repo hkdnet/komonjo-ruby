@@ -7,9 +7,8 @@ module Komonjo
       end
 
       def messages(opts)
-        channel_name = opts[:channels_name]
         connection = connection(@api_token)
-        history = connection.channels_history(channel_name)
+        history = connection.channels_history(opts)
         users = connection.users_list
         gateway = Komonjo::Gateway::MessagesGateway.new(history, users)
         gateway.messages
