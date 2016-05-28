@@ -6,7 +6,7 @@ module Komonjo
       attr_accessor :type, :channel, :user, :text, :ts, :edited, :subtype
       # for jsonize
       attr_reader :markdown
-      alias_method :to_json_org, :to_json
+      alias to_json_org to_json
 
       def self.create(hash)
         new.tap do |e|

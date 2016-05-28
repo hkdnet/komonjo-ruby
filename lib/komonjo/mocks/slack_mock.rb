@@ -1,3 +1,4 @@
+# rubocop:disable all
 module Komonjo
   module Mock
     # Mock for SlackConnection
@@ -82,3 +83,4 @@ module Komonjo
     end
   end
 end
+# rubocop:enable all
