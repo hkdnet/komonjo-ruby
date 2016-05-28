@@ -28,7 +28,7 @@ module Komonjo
 
       def find_user(user_id)
         user = @users.find { |e| e[:id] == user_id }
-        fail "unknown user: #{user_id}" unless user
+        raise "unknown user: #{user_id}" unless user
         Komonjo::Model::User.create(user)
       end
     end

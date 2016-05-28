@@ -1,0 +1,18 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/Gemfile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - '*.erb'
+    - '*.slim'
+    - !ruby/regexp /old_and_unused\.rb$/
+AsciiComments:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
