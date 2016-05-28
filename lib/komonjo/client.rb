@@ -1,4 +1,7 @@
 module Komonjo
+  #
+  # Client
+  #
   class Client
     using ::HashExtensions
     attr_accessor :api_token
