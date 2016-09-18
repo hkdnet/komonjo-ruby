@@ -10,7 +10,12 @@ module Komonjo
       end
 
       def emoji
-        @emoji.map { |k, v| Komonjo::Model::Emoji.create(k, v) }
+        list = @emoji.map { |k, v| Komonjo::Model::Emoji.create(k, v) }
+        list.select(&:alias?).each do |e|
+          target = list.find { |i| i.name == e.alias_name }
+          e.url = target.url
+        end
+        list
       end
     end
   end
