@@ -44,6 +44,15 @@ module Komonjo
         ret['ok']
       end
 
+      #
+      # returns an object, whose key is emoji-name and whose value is url.
+      #
+      def emoji_list(opts = {})
+        ret = client.emoji_list
+        raise 'error' unless ret['ok']
+        ret['emoji']
+      end
+
       private
 
       def channel_id(channel_name)
