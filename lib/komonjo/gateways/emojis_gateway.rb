@@ -13,7 +13,7 @@ module Komonjo
         list = @emoji.map { |k, v| Komonjo::Model::Emoji.create(k, v) }
         list.select(&:alias?).each do |e|
           target = list.find { |i| i.name == e.alias_name }
-          e.url = target.url
+          e.url = target ? target.url : nil
         end
         list
       end
