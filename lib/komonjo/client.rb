@@ -33,6 +33,12 @@ module Komonjo
       s.messages(opts)
     end
 
+    def users(opts = {})
+      s = Komonjo::Service::UsersService.new(@api_token)
+      s.instance_variable_set('@connection', Komonjo::Mock::SlackMock) if @debug
+      s.users(opts)
+    end
+
     def emoji(opts = {})
       s = Komonjo::Service::EmojisService.new(@api_token)
       s.instance_variable_set('@connection', Komonjo::Mock::SlackMock) if @debug
