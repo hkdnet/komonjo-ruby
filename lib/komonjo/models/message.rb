@@ -14,6 +14,10 @@ module Komonjo
         end
       end
 
+      def partial_messages
+        @partial_messages ||= PartialMessageFactory.build(text)
+      end
+
       def timestamp
         Time.at(@ts.to_f).strftime('%Y-%m-%d %H:%M:%S')
       end
