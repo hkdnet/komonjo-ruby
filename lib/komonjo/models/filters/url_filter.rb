@@ -3,7 +3,7 @@ module Komonjo
     module Filter
       # URLFilter
       module URLFilter
-        FILTER = %r{<https?://\S+>}
+        FILTER = %r{<https?://\S+?>}
 
         def self.match(text)
           return false unless text

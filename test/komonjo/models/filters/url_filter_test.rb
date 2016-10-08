@@ -51,5 +51,12 @@ describe Komonjo::Model::Filter::URLFilter do
       assert { parsed[1] == "<http://example.com>" }
       assert { parsed[2] == " bar" }
     end
+
+    it 'should parse "<http://example.com>a<http://example.com>"' do
+      parsed = Komonjo::Model::Filter::URLFilter.parse("<http://example.com>a<http://example.com>")
+      assert { parsed.size == 2 }
+      assert { parsed[0] == "<http://example.com>" }
+      assert { parsed[1] == "a<http://example.com>" }
+    end
   end
 end
