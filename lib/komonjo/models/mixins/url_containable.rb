@@ -6,6 +6,11 @@ module Komonjo
         def type
           :url
         end
+
+        def embed(_)
+          url = text[1..-2]
+          @text = "[#{url}](#{url})"
+        end
       end
     end
   end

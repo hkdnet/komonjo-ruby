@@ -36,6 +36,14 @@ describe Komonjo::Model::PartialMessage do
         second = @subject.next
         assert { second.type == :url }
       end
+
+      describe 'embed' do
+        it "replace text with markdown link" do
+          second = @subject.next
+          second.embed({})
+          assert { second.text == "[http://example.com](http://example.com)" }
+        end
+      end
     end
 
     describe 'the third one' do
