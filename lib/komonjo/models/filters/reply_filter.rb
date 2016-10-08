@@ -2,15 +2,15 @@ module Komonjo
   module Model
     module Filter
       # URLFilter
-      module URLFilter
+      module ReplyFilter
         extend Base
 
         def self.pattern
-          @pattern ||= %r{<https?://\S+?>}
+          @pattern ||= %r{<@\S+?>}
         end
 
         def self.mixin
-          Komonjo::Model::Mixin::URLContainable
+          Komonjo::Model::Mixin::ReplyContainable
         end
       end
     end
