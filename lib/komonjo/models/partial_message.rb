@@ -26,6 +26,9 @@ module Komonjo
       def type
         :text
       end
+
+      def embed(*)
+      end
     end
   end
 end
