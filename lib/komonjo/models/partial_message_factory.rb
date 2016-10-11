@@ -8,7 +8,9 @@ module Komonjo
 
       def self.filters
         @filters ||= [
+          Komonjo::Model::Filter::ReplyFilter,
           Komonjo::Model::Filter::URLFilter,
+          Komonjo::Model::Filter::EmojiFilter,
         ]
       end
     end

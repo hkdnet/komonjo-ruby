@@ -35,5 +35,26 @@ describe Komonjo::Gateway::MessagesGateway do
         assert { e.user.class == Komonjo::Model::User }
       end
     end
+
+    describe 'the first one' do
+      before do
+        @message = @gateway.messages.first
+      end
+
+      it 'should be parsed into partial messages' do
+        assert { @message.partial_messages.size == 3 }
+      end
+
+      describe 'the first partial_message' do
+        before do
+          @first = @message.partial_messages[0]
+        end
+
+        it 'should embed users to messages' do
+          assert { @first.type == :reply }
+          assert { @first.text == "@name001" }
+        end
+      end
+    end
   end
 end

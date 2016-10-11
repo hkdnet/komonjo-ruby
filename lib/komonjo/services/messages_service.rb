@@ -10,7 +10,8 @@ module Komonjo
         connection = connection(@api_token)
         history = connection.channels_history(opts)
         users = connection.users_list
-        gateway = Komonjo::Gateway::MessagesGateway.new(history, users)
+        emojis = connection.emoji_list
+        gateway = Komonjo::Gateway::MessagesGateway.new(history, users, emojis)
         gateway.messages
       end
     end

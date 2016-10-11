@@ -36,8 +36,8 @@ describe Komonjo::Model::Message do
       ts = Time.local(2006, 1, 2, 15, 4, 6)
       u = Komonjo::Model::User.create(
         name: 'test01',
-        profile: {
-          image_48: 'icon_url' })
+        profile: { image_48: 'icon_url' }
+      )
       m = Komonjo::Model::Message.create(ts: ts, text: 'test', user: u)
 
       it 'should return non-nested icon' do

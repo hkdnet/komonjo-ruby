@@ -19,7 +19,7 @@ module Komonjo
 
         def channels_history(channel_name)
           [{ type: 'message', user: 'id001', channel: channel_name,
-             text: 'Hello, world' },
+             text: '<@id001> hello :bow:' },
            { type: 'message', user: 'id002', channel: channel_name,
              text: 'This is Komonjo' }]
         end

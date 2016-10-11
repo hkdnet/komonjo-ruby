@@ -5,21 +5,29 @@ module Komonjo
     # Merge history and users
     class MessagesGateway
       using HashExtensions
-      def initialize(history, users)
+      attr_reader :history, :users, :emojis
+
+      def initialize(history, users, emojis)
         @history = history.map { |e| Hash[e.symbolize_keys] }
         @users = users.map do |e|
-          ret = Hash[e.symbolize_keys]
-          ret[:profile] = Hash[ret[:profile].symbolize_keys]
-          ret
+          h = Hash[e.symbolize_keys]
+          h[:profile] = Hash[h[:profile].symbolize_keys]
+          Komonjo::Model::User.create(h)
+        end
+        @emojis = emojis.map do |(name, url)|
+          Komonjo::Model::Emoji.create(name, url)
         end
       end
 
       def messages
-        @history.map do |e|
+        history.map do |e|
           next e unless e[:user]
           Komonjo::Model::Message.create(e).tap do |message|
             message.user = find_user(e[:user])
             message.text = CGI.unescapeHTML(message.text)
+            message.partial_messages.each do |e|
+              e.embed(embed_data)
+            end
           end
         end
       end
@@ -27,9 +35,16 @@ module Komonjo
       private
 
       def find_user(user_id)
-        user = @users.find { |e| e[:id] == user_id }
-        raise "unknown user: #{user_id}" unless user
-        Komonjo::Model::User.create(user)
+        @users.find { |e| e.id == user_id }.tap do |e|
+          raise "unknown user: #{user_id}" unless e
+        end
+      end
+
+      def embed_data
+        @embed_data ||= {
+          users: users,
+          emojis: emojis,
+        }
       end
     end
   end

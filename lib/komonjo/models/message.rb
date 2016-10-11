@@ -15,7 +15,20 @@ module Komonjo
       end
 
       def partial_messages
-        @partial_messages ||= PartialMessageFactory.build(text)
+        @partial_messages ||=
+          begin
+            ret = []
+            tmp = first_partial_message
+            while tmp
+              ret << tmp
+              tmp = tmp.next
+            end
+            ret
+          end
+      end
+
+      def first_partial_message
+        @first_partial_message ||= PartialMessageFactory.build(text)
       end
 
       def timestamp
@@ -39,7 +52,8 @@ module Komonjo
       end
 
       def text_markdown
-        "\t- #{@text}\n"
+        t = partial_messages.map(&:text).join
+        "\t- #{t}\n"
       end
 
       def to_json(*args)
