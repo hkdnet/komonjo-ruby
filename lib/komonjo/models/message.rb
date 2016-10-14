@@ -52,7 +52,7 @@ module Komonjo
       end
 
       def text_markdown
-        t = partial_messages.map(&:text).join
+        t = partial_messages.map(&:markdown).join
         "\t- #{t}\n"
       end
 

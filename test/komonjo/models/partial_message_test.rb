@@ -41,7 +41,7 @@ describe Komonjo::Model::PartialMessage do
         it "replace text with markdown link" do
           second = @subject.next
           second.embed({})
-          assert { second.text == "[http://example.com](http://example.com)" }
+          assert { second.markdown == "[http://example.com](http://example.com)" }
         end
       end
     end
@@ -102,7 +102,7 @@ describe Komonjo::Model::PartialMessage do
         it "replace text with user\'s name" do
           second = @subject.next
           second.embed(users: @users)
-          assert { second.text == "@hoge" }
+          assert { second.markdown == "@hoge" }
         end
       end
     end
@@ -163,7 +163,7 @@ describe Komonjo::Model::PartialMessage do
         it "replace text with markdown image" do
           second = @subject.next
           second.embed(emojis: @emojis)
-          assert { second.text == "![emoji:emoji](http://example.com)" }
+          assert { second.markdown == "![emoji:emoji](http://example.com)" }
         end
       end
     end

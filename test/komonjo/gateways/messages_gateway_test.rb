@@ -52,7 +52,7 @@ describe Komonjo::Gateway::MessagesGateway do
 
         it 'should embed users to messages' do
           assert { @first.type == :reply }
-          assert { @first.text == "@name001" }
+          assert { @first.markdown == "@name001" }
         end
       end
     end

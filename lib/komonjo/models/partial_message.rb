@@ -8,6 +8,7 @@ module Komonjo
 
       def initialize(text, filters)
         @text = text
+        @markdown = text
         @filters = filters
         parse
       end
