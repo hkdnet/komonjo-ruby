@@ -9,7 +9,7 @@ module Komonjo
         def embed(data)
           name = text[1..-2]
           data[:emojis].any? do |e|
-            @text = "![emoji:#{e.name}](#{e.url})" if e.name == name
+            @markdown = "![emoji:#{e.name}](#{e.url})" if e.name == name
           end
         end
       end

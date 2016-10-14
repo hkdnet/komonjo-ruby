@@ -4,6 +4,7 @@ module Komonjo
       attr_accessor :next
       attr_reader   :text
       attr_reader   :filters
+      attr_reader   :markdown
 
       def initialize(text, filters)
         @text = text

@@ -9,7 +9,7 @@ module Komonjo
 
         def embed(_)
           url = text[1..-2]
-          @text = "[#{url}](#{url})"
+          @markdown = "[#{url}](#{url})"
         end
       end
     end
