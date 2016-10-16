@@ -2,9 +2,9 @@ module Komonjo
   module Model
     class PartialMessage
       attr_accessor :next
-      attr_reader   :text
-      attr_reader   :filters
-      attr_reader   :markdown
+      attr_accessor :markdown
+      attr_accessor :text
+      attr_accessor :filters
 
       def initialize(text, filters)
         @text = text
