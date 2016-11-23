@@ -1,5 +1,3 @@
-require 'test_helper'
-
 describe Komonjo::Gateway::MessagesGateway do
   before do
     @users = Komonjo::Mock::SlackMock.users_list
@@ -12,27 +10,19 @@ describe Komonjo::Gateway::MessagesGateway do
     it 'should return a user by id' do
       u1 = @users[0]
       id = u1[:id]
-      found = @gateway.send :find_user, id
-      assert { found.class == Komonjo::Model::User }
-      assert { found.id == id }
+      found = @gateway.send(:find_user, id)
+      expect(found.id).to eq id
     end
 
     it 'should throw exception with unknown user_id' do
-      begin
-        @gateway.send :find_user, 'unknown_id'
-        assert false, 'this line should not be executed because' \
-          'find_user should throw unknown user exception'
-      rescue
-        assert true
-      end
+      expect { @gateway.send(:find_user, 'unknown_id') }.to raise_error
     end
   end
 
   describe 'messages' do
     it 'should embed users to messages' do
       @gateway.messages.each do |e|
-        assert { e.class == Komonjo::Model::Message }
-        assert { e.user.class == Komonjo::Model::User }
+        expect(e.user).not_to be_nil
       end
     end
 
@@ -42,7 +32,7 @@ describe Komonjo::Gateway::MessagesGateway do
       end
 
       it 'should be parsed into partial messages' do
-        assert { @message.partial_messages.size == 3 }
+        expect(@message.partial_messages.size).to eq 3
       end
 
       describe 'the first partial_message' do
@@ -51,8 +41,8 @@ describe Komonjo::Gateway::MessagesGateway do
         end
 
         it 'should embed users to messages' do
-          assert { @first.type == :reply }
-          assert { @first.markdown == "@name001" }
+          expect(@first.type).to eq :reply
+          expect(@first.markdown).to eq "@name001"
         end
       end
     end

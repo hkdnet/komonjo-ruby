@@ -12,4 +12,4 @@ Style/Documentation:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
-    - "test/**/*.rb"
+    - "spec/**/*.rb"
