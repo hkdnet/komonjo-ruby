@@ -25,8 +25,8 @@ module Komonjo
           Komonjo::Model::Message.create(e).tap do |message|
             message.user = find_user(e[:user])
             message.text = CGI.unescapeHTML(message.text)
-            message.partial_messages.each do |e|
-              e.embed(embed_data)
+            message.partial_messages.each do |partial|
+              partial.embed(embed_data)
             end
           end
         end
