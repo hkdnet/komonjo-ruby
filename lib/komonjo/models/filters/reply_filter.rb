@@ -6,7 +6,7 @@ module Komonjo
         extend Base
 
         def self.pattern
-          @pattern ||= %r{<@\S+?>}
+          @pattern ||= /<@\S+?>/
         end
 
         def self.mixin

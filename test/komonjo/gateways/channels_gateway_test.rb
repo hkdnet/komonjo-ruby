@@ -10,7 +10,7 @@ module Komonjo
           g = Komonjo::Gateway::ChannelsGateway.new channels
           g.channels.each do |e|
             assert { e.class == Komonjo::Model::Channel }
-            assert { !(/^channel/.match(e.name).nil?) }
+            assert { !/^channel/.match(e.name).nil? }
           end
         end
       end

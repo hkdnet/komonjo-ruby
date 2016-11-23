@@ -9,7 +9,7 @@ describe Komonjo::Model::Message do
     end
   end
   describe 'attributes' do
-    ATTRS = %i(type channel user text ts edited subtype)
+    ATTRS = %i(type channel user text ts edited subtype).freeze
     r = Random.new
     ATTRS.each do |e|
       it "should be able to read attr #{e}" do
@@ -17,14 +17,14 @@ describe Komonjo::Model::Message do
         val = r.rand(1000).to_s
         h[e] = val
         m = Komonjo::Model::Message.create(h)
-        fail "no method: #{e}" unless m.respond_to? e.to_s
+        raise "no method: #{e}" unless m.respond_to? e.to_s
         m.send(e).must_equal val
       end
 
       it "should be able to write attr #{e}" do
         h = {}
         m = Komonjo::Model::Message.create(h)
-        fail "no method: #{e}" unless m.respond_to?("#{e}=")
+        raise "no method: #{e}" unless m.respond_to?("#{e}=")
         val = r.rand(1000)
         m.send("#{e}=", val)
         m.send(e).must_equal val
@@ -50,12 +50,12 @@ describe Komonjo::Model::Message do
 
       it 'should return nested ts' do
         m.ts_markdown
-          .must_equal "\t- 2006-01-02 15:04:06\n"
+         .must_equal "\t- 2006-01-02 15:04:06\n"
       end
 
       it 'should return nested text' do
         m.text_markdown
-          .must_equal "\t- test\n"
+         .must_equal "\t- test\n"
       end
 
       it 'should be equal to all markdowns' do

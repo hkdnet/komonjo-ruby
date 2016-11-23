@@ -25,7 +25,7 @@ module KomonjoTest
           it 'should be map hash to Komonjo::Model::Channel' do
             s.channels.each do |e|
               assert { e.class == Komonjo::Model::Channel }
-              assert { !(/^channel/.match(e.name).nil?) }
+              assert { !/^channel/.match(e.name).nil? }
             end
           end
         end

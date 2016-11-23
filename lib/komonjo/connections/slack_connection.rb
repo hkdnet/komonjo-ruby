@@ -47,7 +47,7 @@ module Komonjo
       #
       # returns an object, whose key is emoji-name and whose value is url.
       #
-      def emoji_list(opts = {})
+      def emoji_list(_opts = {})
         ret = client.emoji_list
         raise 'error' unless ret['ok']
         ret['emoji']

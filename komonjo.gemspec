@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["hkdnet"]
   spec.email         = ["hkdnet@users.noreply.github.com"]
 
-  spec.summary       = %q{A Slack client wrapper.}
-  spec.description   = %q{A Slack client wrapper.}
+  spec.summary       = 'A Slack client wrapper.'
+  spec.description   = 'A Slack client wrapper.'
   spec.homepage      = "https://github.com/hkdnet/komonjo-ruby"
   spec.license       = "MIT"
 

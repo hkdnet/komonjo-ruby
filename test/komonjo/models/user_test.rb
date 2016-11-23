@@ -14,7 +14,7 @@ module KomonjoTest
         end
         describe 'attributes' do
           ATTRS = %i(id name deleted color is_admin is_owner is_primary_owner
-                     is_restricted is_ultra_restricted has_2fa has_files)
+                     is_restricted is_ultra_restricted has_2fa has_files).freeze
           r = Random.new
           ATTRS.each do |e|
             it "should be able to read attr #{e}" do
@@ -22,14 +22,14 @@ module KomonjoTest
               val = r.rand(1000).to_s
               h[e] = val
               u = Komonjo::Model::User.create(h)
-              fail "no method: #{e}" unless u.respond_to? e.to_s
+              raise "no method: #{e}" unless u.respond_to? e.to_s
               u.send(e).must_equal val
             end
 
             it "should be able to write attr #{e}" do
               h = {}
               u = Komonjo::Model::User.create(h)
-              fail "no method: #{e}" unless u.respond_to?("#{e}=")
+              raise "no method: #{e}" unless u.respond_to?("#{e}=")
               val = r.rand(1000)
               u.send("#{e}=", val)
               u.send(e).must_equal val
