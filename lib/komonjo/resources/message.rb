@@ -8,6 +8,7 @@ module Komonjo
         @model = model
       end
 
+      # rubocop:disable Metrics/AbcSize
       def as_json
         {
           markdown: model.markdown,
@@ -20,6 +21,7 @@ module Komonjo
           subtype: model.subtype,
         }
       end
+      # rubocop:enable Metrics/AbcSize
 
       def to_json(*args)
         as_json.to_json(*args)
