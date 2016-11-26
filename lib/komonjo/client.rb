@@ -1,8 +1,6 @@
 module Komonjo
   # Client
   class Client
-    using ::HashExtensions
-
     # @param token [String] slack api token
     # @param debug [TrueClass | FalseClass] set true if debug
     def initialize(token: nil, debug: false)
