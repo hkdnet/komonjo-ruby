@@ -1,13 +1,14 @@
 module Komonjo
-  #
   # Client
-  #
   class Client
     using ::HashExtensions
     attr_accessor :api_token
-    def initialize(options)
-      @api_token = options[:token]
-      @debug = options[:debug] || false
+
+    # @param token [String] slack api token
+    # @param debug [TrueClass | FalseClass] set true if debug
+    def initialize(token: nil, debug: false)
+      @api_token = token
+      @debug = debug
     end
 
     def token_valid?
