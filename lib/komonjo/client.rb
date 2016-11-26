@@ -80,7 +80,7 @@ module Komonjo
     end
 
     def mockify(service)
-      service.mockify(connection: Komonjo::Mock::SlackMock) if debug?
+      service.mockify if debug?
       service
     end
   end
