@@ -2,7 +2,6 @@ module Komonjo
   # Client
   class Client
     using ::HashExtensions
-    attr_accessor :api_token
 
     # @param token [String] slack api token
     # @param debug [TrueClass | FalseClass] set true if debug
@@ -70,6 +69,7 @@ module Komonjo
       @emojis_service ||=
         mockify(Komonjo::Service::EmojisService.new(api_token))
     end
+
     def mockify(service)
       service.instance_variable_set('@connection', Komonjo::Mock::SlackMock) if @debug
       service
