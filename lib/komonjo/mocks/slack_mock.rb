@@ -16,7 +16,8 @@ module Komonjo
           ]
         end
 
-        def channels_history(channel_name)
+        def channels_history(channel_id: nil, channel_name: nil)
+          channel_name = "id: #{channel_id}" unless channel_name
           [
             { type: 'message', user: 'id001', channel: channel_name, text: '<@id001> hello :bow:' },
             { type: 'message', user: 'id002', channel: channel_name, text: 'This is Komonjo' }
@@ -65,7 +66,7 @@ module Komonjo
         end
         # rubocop:enable Metrics/MethodLength
 
-        def emoji_list(_opts = {})
+        def emoji_list
           {
             "bowtie": "https:\/\/my.slack.com\/emoji\/bowtie\/46ec6f2bb0.png",
             "squirrel": "https:\/\/my.slack.com\/emoji\/squirrel\/f35f40c0e0.png",
