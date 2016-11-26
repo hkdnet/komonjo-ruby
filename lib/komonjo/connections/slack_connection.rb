@@ -9,14 +9,12 @@ module Komonjo
         @client = Slack::Client.new(token: api_token)
       end
 
-      def channels_history(opts)
-        channel_name = opts.delete(:channel_name)
-        unless opts[:channel]
+      def channels_history(channel_id: nil, channel_name: nil)
+        unless channel_id
           channel_name[0] = '' if channel_name[0] == '#'
           channel_id = channel_id channel_name
-          opts[:channel] = channel_id
         end
-        ret = client.channels_history(opts)
+        ret = client.channels_history(channel: channel_id)
         raise 'error' unless ret['ok']
         ret['messages']
       end
