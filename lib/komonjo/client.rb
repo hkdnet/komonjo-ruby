@@ -23,6 +23,7 @@ module Komonjo
     #
     # @param channel_id [String] channel id
     # @param channel_name [String] channel name
+    # @param channel [String] DEPRECATED!
     # @note At least, one of channel_id and channel_name is required.
     #  If both of id and name are set, channel_id will be used.
     # @return [Array[Komonjo::Model::Message]]
