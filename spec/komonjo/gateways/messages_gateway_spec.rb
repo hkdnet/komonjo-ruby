@@ -1,7 +1,7 @@
 describe Komonjo::Gateway::MessagesGateway do
   before do
     @users = Komonjo::Mock::SlackMock.users_list
-    @history = Komonjo::Mock::SlackMock.channels_history 'test'
+    @history = Komonjo::Mock::SlackMock.channels_history(channel_name: 'test')
     @emojis = {}
     @gateway = Komonjo::Gateway::MessagesGateway.new(@history, @users, @emojis)
   end
