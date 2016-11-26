@@ -31,12 +31,18 @@ module Komonjo
       messages_service.messages(channel_id: channel_id, channel_name: channel_name)
     end
 
-    def users(opts = {})
-      users_service.users(opts)
+    # fetch users
+    #
+    # @return [Array[Komonjo::Model::User]]
+    def users
+      users_service.users
     end
 
-    def emoji(opts = {})
-      emojis_service.emoji(opts)
+    # fetch emojis
+    #
+    # @return [Array[Komonjo::Model::Emoji]]
+    def emoji
+      emojis_service.emoji
     end
 
     private
