@@ -2,7 +2,6 @@ module Komonjo
   module Model
     # slacke Message
     class Message
-      include Komonjo::Extension::ToJson
       attr_accessor :type, :channel, :user, :text, :ts, :edited, :subtype
       # for jsonize
       attr_reader :markdown
@@ -44,9 +43,21 @@ module Komonjo
         ].join("\n")
       end
 
+      def as_json
+        {
+          type: type,
+          channel: channel,
+          user: user,
+          text: text,
+          ts: ts,
+          edited: edited,
+          subtype: subtype,
+          markdown: to_markdown
+        }
+      end
+
       def to_json(*args)
-        @markdown = to_markdown
-        to_json_org(args)
+        as_json.to_json(*args)
       end
 
       def name_markdown
