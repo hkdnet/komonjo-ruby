@@ -50,6 +50,10 @@ module Komonjo
 
     attr_reader :api_token
 
+    def debug?
+      @debug
+    end
+
     def login_service
       @login_service ||=
         mockify(Komonjo::Service::LoginService.new(api_token))
@@ -76,7 +80,7 @@ module Komonjo
     end
 
     def mockify(service)
-      service.instance_variable_set('@connection', Komonjo::Mock::SlackMock) if @debug
+      service.mockify(connection: Komonjo::Mock::SlackMock) if debug?
       service
     end
   end

@@ -5,7 +5,6 @@ module Komonjo
       # @param channel_id
       # @param channel_name
       def messages(channel_id: nil, channel_name: nil)
-        connection = connection(@api_token)
         history = connection.channels_history(channel_id: channel_id, channel_name: channel_name)
         users = connection.users_list
         emojis = connection.emoji_list
