@@ -14,6 +14,10 @@ module Komonjo
           e.profile = Profile.create(hash[:profile]) if hash[:profile]
         end
       end
+
+      def to_markdown
+        "* ![#{name} icon](#{profile.image_48})"
+      end
     end
   end
 end

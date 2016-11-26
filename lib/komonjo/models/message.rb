@@ -36,29 +36,30 @@ module Komonjo
       end
 
       def to_markdown
-        icon_markdown + name_markdown + ts_markdown + text_markdown
-      end
-
-      def icon_markdown
-        "* ![#{@user.name} icon](#{@user.profile.image_48})\n"
-      end
-
-      def name_markdown
-        "\t- #{@user.name}\n"
-      end
-
-      def ts_markdown
-        "\t- #{timestamp}\n"
-      end
-
-      def text_markdown
-        t = partial_messages.map(&:markdown).join
-        "\t- #{t}\n"
+        [
+          user.to_markdown,
+          name_markdown,
+          timestamp_markdown,
+          text_markdown,
+        ].join("\n")
       end
 
       def to_json(*args)
         @markdown = to_markdown
         to_json_org(args)
+      end
+
+      def name_markdown
+        "\t- #{@user.name}"
+      end
+
+      def timestamp_markdown
+        "\t- #{timestamp}"
+      end
+
+      def text_markdown
+        t = partial_messages.map(&:markdown).join
+        "\t- #{t}"
       end
     end
   end
