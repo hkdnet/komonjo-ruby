@@ -14,7 +14,7 @@ require 'komonjo/services'
 module Komonjo
   class << self
     def config
-      @config = Komonjo::Config.new
+      @config ||= Komonjo::Config.new
     end
 
     def configure

@@ -26,12 +26,19 @@ describe Komonjo::Model::Mixin::EmojiContainable do
     end
 
     context 'with :skin-tone-1: and remove_skin_tone = false' do
+      before do
+        @org = Komonjo.config.remove_skin_tone
+        Komonjo.config.remove_skin_tone = false
+      end
       let(:text) { ":skin-tone-1:" }
       let(:data) { { emojis: {} } }
       it 'replace :skin-tone-1: with ""' do
         expect(subject.markdown).to eq ":skin-tone-1:"
         subject.embed(data)
         expect(subject.markdown).to eq ":skin-tone-1:"
+      end
+      after do
+        Komonjo.config.remove_skin_tone = @org
       end
     end
     context 'with :skin-tone-1: and remove_skin_tone = false' do
