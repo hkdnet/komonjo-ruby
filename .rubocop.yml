@@ -1,5 +1,8 @@
 AllCops:
   TargetRubyVersion: 2.2
+  Exclude:
+    - komonjo.gemspec
+    - vendor/bundle/**/*
 AsciiComments:
   Enabled: false
 Metrics/LineLength:

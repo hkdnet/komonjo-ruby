@@ -30,8 +30,7 @@ module Komonjo
         :text
       end
 
-      def embed(*)
-      end
+      def embed(*); end
 
       private
 
