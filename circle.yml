@@ -4,4 +4,4 @@ machine:
 test:
   override:
     - bundle exec rake
-    - bundle exec rubocop
+    - bundle exec rubocop lib spec
