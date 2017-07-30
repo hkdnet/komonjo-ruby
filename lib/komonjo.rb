@@ -13,10 +13,13 @@ require 'komonjo/services'
 
 module Komonjo
   class << self
+    # @return [Komonjo::Config]
     def config
       @config ||= Komonjo::Config.new
     end
 
+    # @yield [Komonjo::Config]
+    # @return [void]
     def configure
       yield config
     end

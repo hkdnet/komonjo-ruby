@@ -4,15 +4,23 @@ module Komonjo
   module Connection
     # Connection for slack
     class SlackConnection
-      attr_reader :client
+      # @param api_token [String] api token
       def initialize(api_token)
         @client = Slack::Client.new(token: api_token)
       end
 
+      # @param channel_id [String]
+      # @param channel_name [String]
+      # @note Either channel_id or channel_name is required.
+      # @example
+      #   conn.channels_history(channel_name: '#general')
+      #   conn.channels_history(channel_name: 'general')
+      #   conn.channels_history(channel_id: 'C1234567')
+      # @return [Hash]
       def channels_history(channel_id: nil, channel_name: nil)
         unless channel_id
           channel_name[0] = '' if channel_name[0] == '#'
-          channel_id = channel_id channel_name
+          channel_id = channel_id(channel_name)
         end
         ret = client.channels_history(channel: channel_id)
         raise 'error' unless ret['ok']
@@ -50,6 +58,12 @@ module Komonjo
 
       private
 
+      attr_reader :client
+
+      # @param channel_name [String] channel name, the first character must not be '#'.
+      # @return [String] channel id
+      # @raise StandardError on connection error.
+      # @raise StandardError if specified channel_name does not exist.
       def channel_id(channel_name)
         channel_list = client.channels_list
         raise 'error' unless channel_list['ok']
